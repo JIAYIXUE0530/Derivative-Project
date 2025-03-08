@@ -59,7 +59,7 @@ Once the command runs, you will see a **local URL** (e.g., `http://localhost:850
 All data used in this project is sourced from the **Bank for International Settlements (BIS)**.
 
 ## 📬 Contact
-For any questions or suggestions, feel free to reach out **jiayix@uchicago.edu**!
+For any questions or suggestions, feel free to reach out **jiayix@uchicago.edu**
 
 ---
 ✨ *Happy analyzing!* 🚀
