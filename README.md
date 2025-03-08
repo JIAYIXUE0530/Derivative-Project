@@ -58,11 +58,8 @@ Once the command runs, you will see a **local URL** (e.g., `http://localhost:850
 ## 📌 Data Source
 All data used in this project is sourced from the **Bank for International Settlements (BIS)**.
 
-## 📜 License
-This project is licensed under the **MIT License**.
-
 ## 📬 Contact
-For any questions or suggestions, feel free to reach out!
+For any questions or suggestions, feel free to reach out **jiayix@uchicago.edu**!
 
 ---
 ✨ *Happy analyzing!* 🚀
