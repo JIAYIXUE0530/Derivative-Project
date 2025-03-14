@@ -21,12 +21,43 @@ risk_categories = df[category_col].unique()
 
 # 侧边栏翻页机制
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Select Page", ["Time Series Analysis", "Geospatial Analysis"])
+page = st.sidebar.radio("Select Page", ["Info", "📈 Time Series Analysis", "🌍 Geospatial Analysis"])
 
-if page == "Time Series Analysis":
+# Info 页面
+if page == "Info":
+    st.title("Global Derivative Transactions Dashboard")
+    st.markdown("""
+    ## 🌍 Overview
+    **Data Source:** *The data is sourced from the **Bank for International Settlements (BIS)**.*
+    
+    This dashboard allows users to explore global derivative transactions through **interactive visualizations**.
+
+    ### 🔹 Time Series Analysis
+    - **Description**: Examines derivative transaction trends across different risk categories.
+    - **Included Data**: Turnover - notional amounts (daily average) in **USD billions**.
+    - **Time Range**: Covers multiple historical periods.
+    - **Usage**:
+      - Select risk categories in the sidebar.
+      - Hover over data points for transaction details.
+      - Use the **range slider** to zoom in on specific timeframes.
+    
+    ### 🔹 Geospatial Analysis
+    - **Description**: Displays country-level derivative transaction volumes on an interactive map.
+    - **Included Data**: Aggregated transactions per country in **USD billions**.
+    - **Available Time Periods**: Selectable quarters (*2023-Q4, 2024-Q2, 2024-Q3*).
+    - **Usage**:
+      - Select a **time period** from the sidebar.
+      - Hover over a country to view its transaction volume.
+      - Click on a country to download **historical transaction data** (if available).
+    
+    🛠 **Navigation:** Use the left sidebar to switch between analysis pages.
+    """)
+
+# Time Series Analysis 页面
+elif page == "📈 Time Series Analysis":
     st.title("📈 Global Derivative Transactions by " + category_col)
-    st.markdown("This dashboard provides an overview of global derivative transactions by risk category. ")
-    st.markdown("Calculation index is Turnover - notional amounts (daily average) in USD billions.")
+    st.markdown("This dashboard provides an overview of global derivative transactions by risk category.")
+    st.markdown("Calculation index: **Turnover - notional amounts (daily average) in USD billions.**")
     st.sidebar.header("⚙️ Settings")
     
     selected_categories = st.sidebar.multiselect(
@@ -48,9 +79,7 @@ if page == "Time Series Analysis":
             name=category
         ))
     
-    fig.update_xaxes(
-        rangeslider_visible=True
-    )
+    fig.update_xaxes(rangeslider_visible=True)
     
     st.plotly_chart(fig, use_container_width=True)
     
@@ -64,7 +93,10 @@ if page == "Time Series Analysis":
     )
     
     st.dataframe(filtered_df, height=300, width=1000)
+    
+    st.markdown("<br>📌 *The data is sourced from the **Bank for International Settlements (BIS).***", unsafe_allow_html=True)
 
+# Geospatial Analysis 页面
 else:
     st.title("🌍 Global Derivative Transactions Map")
     file_path_geo = "DerivativeData_Geo.csv"
@@ -185,3 +217,5 @@ else:
             st.warning(f"Failed to fetch data for {selected_country}.")
     else:
         st.warning(f"No data available for {selected_country}.")
+    
+    st.markdown("<br>📌 *The data is sourced from the **Bank for International Settlements (BIS).***", unsafe_allow_html=True)
